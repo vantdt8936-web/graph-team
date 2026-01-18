@@ -20,6 +20,12 @@ void DFSUtil(int u, vector<bool>& visited, const vector<vector<pair<int, int>>>&
 void DFS(Graph & g, int startNode) {
     int n = (int)g.getAdjList().size();
     vector<bool> visited(n, false);
+for (int i = 0; i < n; i++) {
+        if (!visited[i]) { // Nếu gặp đỉnh chưa thăm, chứng tỏ đó là cụm mới
+            DFSUtil(i, visited, g.getAdjList());
+        }
+    }
+}
     cout << "DFS starting from node " << startNode << ": ";
     DFSUtil(startNode, visited, g.getAdjList());
     cout << endl;
