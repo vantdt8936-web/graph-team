@@ -12,6 +12,27 @@ void BFS(Graph& g, int startNode) { // Nên dùng tham chiếu &g để tránh c
 
     vector<bool> visited(n, false);
     queue<int> q;
+    for (int i = 0; i < n; i++) {
+        int currentStart = (i == 0) ? startNode : i; // Ưu tiên chạy startNode trước
+        
+        if (!visited[currentStart]) {
+            visited[currentStart] = true;
+            q.push(currentStart);
+
+            while (!q.empty()) {
+                int u = q.front();
+                q.pop();
+                cout << u << " ";
+
+                for (auto& edge : adj[u]) {
+                    int v = edge.first;
+                    if (!visited[v]) {
+                        visited[v] = true;
+                        q.push(v);
+                    }
+                }
+            }
+        }
 
     visited[startNode] = true;
     q.push(startNode);
